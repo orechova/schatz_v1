@@ -1,4 +1,33 @@
-var app = angular.module('Schatz', ['ionic']);
+var app = angular.module('Schatz', ['ionic','ngCordova']);
+
+app.run(function($ionicPlatform, $cordovaSQLite) {
+        $ionicPlatform.ready(function() {
+            db = $cordovaSQLite.openDB("schatz01.db");
+            // TABLE LANGUAGES
+            $cordovaSQLite.execute(db, "
+              CREATE TABLE IF NOT EXISTS `languages` (
+              `language_id` int(11) NOT NULL,
+              `shortcut` char(2) NOT NULL,
+              `name` varchar(30) NOT NULL
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+            ");
+            $cordovaSQLite.execute(db, " ALTER TABLE `languages` ADD PRIMARY KEY (`language_id`); ");
+            $cordovaSQLite.execute(db, " ALTER TABLE `languages` MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT; ");
+            // TABLE SETTINGS
+            $cordovaSQLite.execute(db, "
+              
+            ");
+            $cordovaSQLite.execute(db, "
+              
+            ");
+            // TABLE EXPRESSIONS
+            $cordovaSQLite.execute(db, "
+              
+            ");
+            $cordovaSQLite.execute(db, "
+              
+            ");
+        });
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -44,15 +73,7 @@ app.controller('mainController', function($scope){
 
 });
 /*
-app.factory('languages', function languagesFactory(){
-  return {
-    'list':[
-      {id: 'sk', name: 'slovenčina'}, {id: 'it', name: 'italiano'}, {id: 'de', name: 'deutsch'}
-    ],
-    'default': 'sk',
-    'translate': 'it'
-  };
-});
+
 
 app.factory('localStorageWords',["ngStorage", function($localStorage){
 

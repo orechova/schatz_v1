@@ -1,33 +1,66 @@
 var app = angular.module('Schatz', ['ionic','ngCordova']);
+var db = null;
+
 
 app.run(function($ionicPlatform, $cordovaSQLite) {
-        $ionicPlatform.ready(function() {
-            db = $cordovaSQLite.openDB("schatz01.db");
-            // TABLE LANGUAGES
-            $cordovaSQLite.execute(db, "
-              CREATE TABLE IF NOT EXISTS `languages` (
-              `language_id` int(11) NOT NULL,
-              `shortcut` char(2) NOT NULL,
-              `name` varchar(30) NOT NULL
-              ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-            ");
-            $cordovaSQLite.execute(db, " ALTER TABLE `languages` ADD PRIMARY KEY (`language_id`); ");
-            $cordovaSQLite.execute(db, " ALTER TABLE `languages` MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT; ");
-            // TABLE SETTINGS
-            $cordovaSQLite.execute(db, "
-              
-            ");
-            $cordovaSQLite.execute(db, "
-              
-            ");
-            // TABLE EXPRESSIONS
-            $cordovaSQLite.execute(db, "
-              
-            ");
-            $cordovaSQLite.execute(db, "
-              
-            ");
-        });
+
+  $ionicPlatform.ready(function() {
+    db = $cordovaSQLite.openDB("schatz01.db");
+    // CREATE TABLE LANGUAGES
+    $cordovaSQLite.execute(db, "
+      CREATE TABLE IF NOT EXISTS languages(
+      language_id INTEGER PRIMARY KEY AUTOINCREMENT,
+      shortcut VARCHAR NOT NULL,
+      name VARCHAR NOT NULL
+      );
+    ");
+    // AND PREPOPULATE
+    $cordovaSQLite.execute(db, "SELECT COUNT(*) FROM languages")
+      .then(function(res){
+        if (res.rows.length == 0){
+          var ins_query = "INSERT INTO languages (firstname, lastname) VALUES (?,?)";
+          $cordovaSQLite.execute(db, ins_query, ['sk','slovenčina']);
+          $cordovaSQLite.execute(db, ins_query, ['it','italiano']);
+        }
+      });
+
+    // CREATE TABLE SETTINGS
+    $cordovaSQLite.execute(db, "
+      CREATE TABLE IF NOT EXISTS settings(
+      user_id INTEGER PRIMARY KEY,
+      default_language INTEGER NOT NULL,
+      learning_language INTEGER NOT NULL
+      );
+    ");
+    // AND PREPOPULATE
+    $cordovaSQLite.execute(db, "SELECT COUNT(*) FROM settings")
+      .then(function(res){
+        if (res.rows.length == 0){
+          var ins_query = "INSERT INTO settings (user_id, default_language, learning_language) VALUES (?,?)";
+          $cordovaSQLite.execute(db, ins_query, [1, 1, 2]);
+        }
+      });
+
+    // TABLE EXPRESSIONS
+    $cordovaSQLite.execute(db, "
+      CREATE TABLE IF NOT EXISTS expressions(
+      expression_id INTEGER PRIMARY KEY,
+      created DATETIME DEFAULT CURRENT_TIMESTAMP,
+      last_test_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+      last_test_success INTEGER DEFAULT 0,
+      languageD INTEGER NOT NULL,
+      textD TEXT NOT NULL,
+      languageL INTEGER NOT NULL,
+      textL TEXT NOT NULL
+      );
+    ");
+    // THIS WILL START EMPTY
+
+  });
+
+});
+
+
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -72,25 +105,3 @@ app.config(function($stateProvider, $urlRouterProvider) {
 app.controller('mainController', function($scope){
 
 });
-/*
-
-
-app.factory('localStorageWords',["ngStorage", function($localStorage){
-
-  if (!$localStorage.words){
-        $localStorage.words = JSON.stringify([]);
-      }
-  if (!$localStorage.lastID){
-    $localStorage.lastID = -1;
-  }
-
-  return {
-    update: function(words){
-      $localStorage.words = JSON.stringify(words);
-    },
-    get: function(){
-      return JSON.parse( $localStorage.words );
-    }
-  }
-}]);
-*/

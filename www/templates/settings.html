@@ -5,13 +5,13 @@
     		Default language
     	</div>
     	<div class="item">
-    		{{ languages.default.id }} - {{ languages.default.name }}
+    		sk - slovencina
     	</div>
-    	<div class="item item-divider item-buton-right">
+    	<div class="item item-divider">
     		Learning languages
     	</div>
     	<div class="item" data-ng-repeat="language in languages.learning">
-    		{{ language.id }} - {{ language.name }}
+    		{{ language.shortcut }} - {{ language.name }}
     	</div>
     </div>
   </ion-content>

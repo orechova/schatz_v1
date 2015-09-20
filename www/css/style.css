@@ -1,3 +1,10 @@
 .home-buttons{
   padding-top: 15%;
 }
+.info-content{
+  padding: 10%;
+}
+.align-right{
+	position: relative;
+	right: 0px;
+}

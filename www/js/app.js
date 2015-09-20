@@ -2,67 +2,54 @@ var app = angular.module('Schatz', ['ionic','ngCordova']);
 var db = null;
 
 
+/** INITIALIZE THE APP 
+** create db and tables and insert some example data if not existing **/
 app.run(function($ionicPlatform, $cordovaSQLite) {
 
   $ionicPlatform.ready(function() {
-    db = $cordovaSQLite.openDB("schatz01.db");
+    
+    db = $cordovaSQLite.openDB({ name: "schatz.db" }); //device
+    
     // CREATE TABLE LANGUAGES
-    $cordovaSQLite.execute(db, "
-      CREATE TABLE IF NOT EXISTS languages(
-      language_id INTEGER PRIMARY KEY AUTOINCREMENT,
-      shortcut VARCHAR NOT NULL,
-      name VARCHAR NOT NULL
-      );
-    ");
-    // AND PREPOPULATE
-    $cordovaSQLite.execute(db, "SELECT COUNT(*) FROM languages")
-      .then(function(res){
-        if (res.rows.length == 0){
-          var ins_query = "INSERT INTO languages (firstname, lastname) VALUES (?,?)";
-          $cordovaSQLite.execute(db, ins_query, ['sk','slovenčina']);
-          $cordovaSQLite.execute(db, ins_query, ['it','italiano']);
-        }
-      });
+    $cordovaSQLite.execute(db, 
+      "CREATE TABLE IF NOT EXISTS languages(" +
+      "language_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+      "shortcut VARCHAR NOT NULL," +
+      "name VARCHAR NOT NULL" +
+      ")"
+    );
 
     // CREATE TABLE SETTINGS
-    $cordovaSQLite.execute(db, "
-      CREATE TABLE IF NOT EXISTS settings(
-      user_id INTEGER PRIMARY KEY,
-      default_language INTEGER NOT NULL,
-      learning_language INTEGER NOT NULL
-      );
-    ");
-    // AND PREPOPULATE
-    $cordovaSQLite.execute(db, "SELECT COUNT(*) FROM settings")
-      .then(function(res){
-        if (res.rows.length == 0){
-          var ins_query = "INSERT INTO settings (user_id, default_language, learning_language) VALUES (?,?)";
-          $cordovaSQLite.execute(db, ins_query, [1, 1, 2]);
-        }
-      });
+    $cordovaSQLite.execute(db,
+      "CREATE TABLE IF NOT EXISTS settings(" +
+      "user_id INTEGER PRIMARY KEY," +
+      "default_language INTEGER NOT NULL," +
+      "learning_language INTEGER NOT NULL" +
+      ")"
+    );
 
-    // TABLE EXPRESSIONS
-    $cordovaSQLite.execute(db, "
-      CREATE TABLE IF NOT EXISTS expressions(
-      expression_id INTEGER PRIMARY KEY,
-      created DATETIME DEFAULT CURRENT_TIMESTAMP,
-      last_test_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-      last_test_success INTEGER DEFAULT 0,
-      languageD INTEGER NOT NULL,
-      textD TEXT NOT NULL,
-      languageL INTEGER NOT NULL,
-      textL TEXT NOT NULL
-      );
-    ");
+    // CREATE TABLE EXPRESSIONS
+    $cordovaSQLite.execute(db,
+      "CREATE TABLE IF NOT EXISTS expressions(" +
+      "expression_id INTEGER PRIMARY KEY," +
+      "created DATETIME DEFAULT CURRENT_TIMESTAMP," +
+      "last_test_time DATETIME DEFAULT CURRENT_TIMESTAMP," +
+      "last_test_success INTEGER DEFAULT 0," +
+      "languageD INTEGER NOT NULL," +
+      "textD TEXT NOT NULL," +
+      "languageL INTEGER NOT NULL," +
+      "textL TEXT NOT NULL" +
+      ")"
+    );
     // THIS WILL START EMPTY
 
   });
 
 });
 
-
-
-app.config(function($stateProvider, $urlRouterProvider) {
+/** APP CONFIGURATION
+** prepare routing **/
+app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $stateProvider
     .state('tabs', {
@@ -100,8 +87,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/tab/home");
 
-});
-
-app.controller('mainController', function($scope){
+  $ionicConfigProvider.tabs.position('bottom');
 
 });

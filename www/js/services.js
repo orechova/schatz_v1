@@ -14,6 +14,7 @@ app.factory("schatzDB", ["cordovaSQLite", function($cordovaSQLite, $q){
         .then(function (result) {
           q.resolve(result);
         }, function (error) {
+        	console.log('Errors found');
           console.warn('I found an error');
           console.warn(error);
           q.reject(error);
@@ -38,25 +39,6 @@ app.factory("schatzDB", ["cordovaSQLite", function($cordovaSQLite, $q){
     output = angular.copy(result.rows.item(0));
     return output;
   }
-
-  self.init = function(){
-  	self.query("SELECT COUNT(*) FROM languages")
-      .then(function(res){
-        if (res.rows.length == 0){
-          var ins_query = "INSERT INTO languages (shortcut, name) VALUES (?,?)";
-          self.query( ins_query, ['sk','slovenčina'] );
-          self.query( ins_query, ['it','italiano'] );
-        }
-    self.query("SELECT COUNT(*) FROM settings")
-      .then(function(res){
-        if (res.rows.length == 0){
-          var ins_query = "INSERT INTO settings (user_id, default_language, learning_language) VALUES (?,?)";
-          self.query( ins_query, [1, 1, 2] );
-        }
-  });
-     
-
-  self.init();
 
   return self;
 }]);

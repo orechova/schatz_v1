@@ -4,14 +4,15 @@
     	<div class="item item-divider">
     		Default language
     	</div>
-    	<div class="item">
-    		sk - slovencina
+    	<div class="item" ng-repeat="language in languages" ng-if="language.language_id == settings.default_language">
+    		{{ language.shortcut }} - {{ language.name }}
     	</div>
     	<div class="item item-divider">
     		Learning languages
     	</div>
-    	<div class="item" data-ng-repeat="language in languages.learning">
-    		{{ language.shortcut }} - {{ language.name }}
+    	<div class="item" ng-repeat="language in languages" ng-if="language.language_id != settings.default_language"  ng-class="(language.language_id == settings.learning_language)?'selected':''">
+    		<input type="radio" class="checkbox-icon" name="learningLanguage" ng-checked="(language.language_id == settings.learning_language)" ng-click="setLearningLanguage(language.language_id)">
+            {{ language.shortcut }} - {{ language.name }}
     	</div>
     </div>
   </ion-content>

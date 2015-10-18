@@ -1,8 +1,6 @@
 /** Service for handling DB **/
-app.factory("schatzDB", ["cordovaSQLite", function($cordovaSQLite, $q){
+app.factory("schatzDB", function($cordovaSQLite, $q, $ionicPlatform){
   var self = this;
-
-   
 
   // Handle query's and potential errors
   self.query = function (query, parameters) {
@@ -29,6 +27,7 @@ app.factory("schatzDB", ["cordovaSQLite", function($cordovaSQLite, $q){
     for (var i = 0; i < result.rows.length; i++) {
       output.push(result.rows.item(i));
     }
+
     return output;
   }
 
@@ -39,51 +38,65 @@ app.factory("schatzDB", ["cordovaSQLite", function($cordovaSQLite, $q){
     return output;
   }
 
-  self.init = function(){
-  	self.query("SELECT COUNT(*) FROM languages")
+  self.initLanguages = function(){
+  	self.query("SELECT COUNT(*) as count FROM languages")
       .then(function(res){
-        if (res.rows.length == 0){
+        if (res.rows.item(0).count == 0){
           var ins_query = "INSERT INTO languages (shortcut, name) VALUES (?,?)";
           self.query( ins_query, ['sk','slovenčina'] );
           self.query( ins_query, ['it','italiano'] );
         }
-    self.query("SELECT COUNT(*) FROM settings")
+      });
+    self.query("SELECT COUNT(*) as count FROM settings")
       .then(function(res){
-        if (res.rows.length == 0){
-          var ins_query = "INSERT INTO settings (user_id, default_language, learning_language) VALUES (?,?)";
-          self.query( ins_query, [1, 1, 2] );
+        if (res.rows.item(0).count == 0){
+          var ins_query = "INSERT INTO settings (default_language, learning_language) VALUES (?,?)";
+          self.query( ins_query, [1, 2] );
         }
-  });
+    	});
+  };
      
 
-  self.init();
-
   return self;
-}]);
+});
 
 /** Languages model **/
-app.factory('languages', ["cordovaSQLite", "schatzDB", function($cordovaSQLite, schatzDB){
+app.factory('Languages', ["schatzDB", function(schatzDB){
 
 	var self = this;
+
+	schatzDB.initLanguages();
 	
-	// load from db
-	self.all = function() {
-		return schatzDB.query("SELECT language_id, shortcut, name FROM languages")
+	self.getLanguages = function() {
+		return schatzDB.query("SELECT * FROM languages")
       .then(function(result){
         return schatzDB.getAll(result);
       });
   }
 
-	// setters and getters
-	self.add = function(shortcut, name) {
+  self.getSettings = function(){
+    return schatzDB.query("SELECT * FROM settings WHERE user_id==1")
+      .then(function(result){
+        return schatzDB.getAll(result);
+      });
+  }
+
+  self.setLearningLanguage = function(language_id){
+    var parameters = [language_id];
+    return schatzDB.query("UPDATE languages SET learning_language=? WHERE user_id==1", parameters);
+  }
+
+  self.add = function(shortcut, name) {
     var parameters = [shortcut, name];
     return schatzDB.query("INSERT INTO languages (shortcut, name) VALUES (?,?)", parameters);
   }
-	self.remove = function(language_id) {
+
+  self.remove = function(language_id) {
     var parameters = [language_id];
     return schatzDB.query("DELETE FROM languages WHERE id = (?)", parameters);
   }
 
-  return languages;
+
+  return self;
 
 }]);

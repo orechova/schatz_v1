@@ -8,8 +8,8 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
 
   $ionicPlatform.ready(function() {
     
-    db = $cordovaSQLite.openDB({ name: "schatz.db" }); //device
-    
+    db = $cordovaSQLite.openDB("schatz.db"); //device
+
     // CREATE TABLE LANGUAGES
     $cordovaSQLite.execute(db, 
       "CREATE TABLE IF NOT EXISTS languages(" +
@@ -22,7 +22,7 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
     // CREATE TABLE SETTINGS
     $cordovaSQLite.execute(db,
       "CREATE TABLE IF NOT EXISTS settings(" +
-      "user_id INTEGER PRIMARY KEY," +
+      "user_id INTEGER PRIMARY KEY AUTOINCREMENT," +
       "default_language INTEGER NOT NULL," +
       "learning_language INTEGER NOT NULL" +
       ")"
@@ -31,7 +31,7 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
     // CREATE TABLE EXPRESSIONS
     $cordovaSQLite.execute(db,
       "CREATE TABLE IF NOT EXISTS expressions(" +
-      "expression_id INTEGER PRIMARY KEY," +
+      "expression_id INTEGER PRIMARY KEY AUTOINCREMENT," +
       "created DATETIME DEFAULT CURRENT_TIMESTAMP," +
       "last_test_time DATETIME DEFAULT CURRENT_TIMESTAMP," +
       "last_test_success INTEGER DEFAULT 0," +

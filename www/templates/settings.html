@@ -10,9 +10,10 @@
     	<div class="item item-divider">
     		Learning languages
     	</div>
-    	<div class="item" ng-repeat="language in languages" ng-if="language.language_id != settings.default_language"  ng-class="(language.language_id == settings.learning_language)?'selected':''">
-    		<input type="radio" class="checkbox-icon" name="learningLanguage" ng-checked="(language.language_id == settings.learning_language)" ng-click="setLearningLanguage(language.language_id)">
-            {{ language.shortcut }} - {{ language.name }}
+    	<div class="item language-item" ng-repeat="language in languages" ng-if="language.language_id != settings.default_language"  ng-class="(language.language_id == settings.learning_language)?'selected':''">
+            <span class="language-label">{{ language.shortcut }} - {{ language.name }}</span>
+            <label for="lng{{ language.language_id }}"></label>
+            <input type="radio" name="learningLanguage" id="lng{{ language.language_id }}" ng-checked="(language.language_id == settings.learning_language)" ng-click="setLearningLanguage(language.language_id)">
     	</div>
     </div>
   </ion-content>

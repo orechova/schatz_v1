@@ -1,9 +1,15 @@
-var app = angular.module('Schatz', ['ionic','ngCordova']);
+var pc_test = false;
+if (pc_test)
+  var app = angular.module('Schatz', ['ionic']);
+else
+  var app = angular.module('Schatz', ['ionic','ngCordova']);
 var db = null;
 
 
 /** INITIALIZE THE APP 
 ** create db and tables and insert some example data if not existing **/
+
+if (!pc_test)
 app.run(function($ionicPlatform, $cordovaSQLite) {
 
   $ionicPlatform.ready(function() {
@@ -71,7 +77,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       views: {
         'settings-tab': {
           templateUrl: "templates/settings.html",
-          controller: 'SettingsTabCtrl'
+          controller: (pc_test)?'SettingsTabCtrlDemo':'SettingsTabCtrl'
         }
       }
     })

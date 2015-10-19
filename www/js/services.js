@@ -1,4 +1,5 @@
 /** Service for handling DB **/
+if (!pc_test)
 app.factory("schatzDB", function($cordovaSQLite, $q, $ionicPlatform){
   var self = this;
 
@@ -61,6 +62,7 @@ app.factory("schatzDB", function($cordovaSQLite, $q, $ionicPlatform){
 });
 
 /** Languages model **/
+if (!pc_test)
 app.factory('Languages', ["schatzDB", function(schatzDB){
 
 	var self = this;

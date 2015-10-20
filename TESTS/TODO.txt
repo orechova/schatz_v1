@@ -1,0 +1,21 @@
+VSEOBECNE:
+- rozdelit subory
+- load expressions, languages and settings - pri inicializacii aplikacie (globalny controller alebo tak)
+- presunut pomocne funkcie z controllerov do services?
+
+SETTINGS:
+- dizajn '+' buttonu
+- transparentnost obrazkov
+- po prepopulacii updatnut scope
+? custom directive pre lng
++ funkcnost '+' buttonu
+
+VOCABULARY:
+- nacitanie iba casti slovicok (pre vacsie sety) .. load podla scrollu
+- prehodit poradie stlpcov
+- search
+- prehadzovanie searchu
+- pridat slovo odtialto (spat ukazuje na zoznam)
+
+NEW WORD:
+- check ci kombinacia vyraz + preklad uz neexistuje

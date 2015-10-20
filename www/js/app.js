@@ -39,7 +39,7 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
       "CREATE TABLE IF NOT EXISTS expressions(" +
       "expression_id INTEGER PRIMARY KEY AUTOINCREMENT," +
       "created DATETIME DEFAULT CURRENT_TIMESTAMP," +
-      "last_test_time DATETIME DEFAULT CURRENT_TIMESTAMP INDEX," +
+      "last_test_time DATETIME DEFAULT CURRENT_TIMESTAMP," +
       "last_test_success INTEGER DEFAULT 0," +
       "languageF INTEGER NOT NULL," +
       "textF TEXT NOT NULL," +
@@ -72,15 +72,6 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         }
       }
     })
-    .state('tabs.new-language', {
-      url: "/new-language",
-      views: {
-        'settings-tab': {
-          templateUrl: "templates/newLanguage.html",
-          controller: 'NewLangCtrl'
-        }
-      }
-    })
     .state('tabs.settings', {
       url: "/settings",
       views: {
@@ -96,6 +87,33 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         'info-tab': {
           templateUrl: "templates/info.html",
           controller: 'InfoTabCtrl'
+        }
+      }
+    })
+    .state('tabs.new-language', {
+      url: "/new-language",
+      views: {
+        'settings-tab': {
+          templateUrl: "templates/newLanguage.html",
+          controller: 'NewLangCtrl'
+        }
+      }
+    })
+    .state('tabs.vocabulary', {
+      url: "/vocabulary",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/vocabulary.html",
+          controller: 'VocabularyCtrl'
+        }
+      }
+    })
+    .state('tabs.new-word', {
+      url: "/new-word",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/newWord.html",
+          controller: 'NewWordCtrl'
         }
       }
     })

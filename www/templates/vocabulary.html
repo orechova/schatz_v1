@@ -1,0 +1,14 @@
+<ion-view view-title="Vocabulary">
+	<ion-content>
+		<div class="list">
+			<article class="item item-divider row">
+				<span class="col col-50">{{ settings.default_language_name }}</span>
+				<span class="col col-50">{{ settings.learning_language_name  }}</span>
+			</article>
+			<article class="item row" ng-repeat="expression in expressions">
+				<span class="col col-50">{{ expression.textF }}</span>
+				<span class="col col-50">{{ expression.textT }}</span>
+			</article>
+		</div>
+	</ion-content>
+</ion-view>

@@ -98,11 +98,28 @@
       return schatzDB.query("INSERT INTO languages (shortcut, name) VALUES (?,?)", parameters);
     }
 
-    self.remove = function(language_id) {
-      var parameters = [language_id];
-      return schatzDB.query("DELETE FROM languages WHERE id = (?)", parameters);
+    return self;
+
+  }]);
+
+/** Expressions model **/
+  if (!pc_test)
+  app.factory('Expressions', ["schatzDB", function(schatzDB){
+
+    var self = this;
+    
+    self.getExpressions = function(languageF, languageT, orderBy) {
+      var parameters = [languageF, languageT, (orderBy==1)?'languageF':'languageT'];
+      return schatzDB.query("SELECT * FROM expressions WHERE languageF=? AND languageT=? ORDER BY ?", parameters)
+        .then(function(result){
+          return schatzDB.getAll(result);
+        });
     }
 
+    self.addNew = function(newExp) {
+      var parameters = [newExp.languageF, newExp.languageT, newExp.textF, newExp.textT];
+      return schatzDB.query("INSERT INTO expressions (languageF, languageT, textF, textT) VALUES (?,?,?,?)", parameters);
+    }
 
     return self;
 

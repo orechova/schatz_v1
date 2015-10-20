@@ -11,26 +11,26 @@
 .selected {
   font-weight: bold; }
 
-.language-item > span {
-  float: left; }
+.language-item {
+  padding-right: 1em;
+  background-origin: content-box;
+  background-image: url("../img/checkbox_green.png");
+  background-position: right center;
+  background-repeat: no-repeat; }
 
-.language-item > input[type='radio'] {
-  float: right;
-  width: 20px;
-  height: 20px;
-  opacity: 0; }
+.language-item.selected {
+  background-image: url("../img/checkbox_green_checked.png"); }
 
-.language-item > label {
-  float: right;
-  width: 25px;
-  height: 25px;
-  margin: 0;
-  padding: 0;
-  clear: none;
-  cursor: pointer;
-  background: url("../img/checkbox_green.png") right center no-repeat; }
+.button-divider {
+  position: absolute;
+  right: 1em; }
 
-.language-item.selected > label {
-  background: url("../img/checkbox_green_checked.png") right center no-repeat; }
+.form-error {
+  font-size: small;
+  font-style: italic;
+  color: red; }
+
+.form-error::before {
+  content: '!'; }
 
 /*# sourceMappingURL=style.css.map */

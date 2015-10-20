@@ -8,12 +8,11 @@
     		{{ language.shortcut }} - {{ language.name }}
     	</div>
     	<div class="item item-divider">
-    		Learning languages
+    		Learning languages ({{ settings.learning_language }})
+            <a class="button button-divider button-small button-clear button-balanced icon ion-plus-round" href="#/tab/new-language"></a>
     	</div>
-    	<div class="item language-item" ng-repeat="language in languages" ng-if="language.language_id != settings.default_language"  ng-class="(language.language_id == settings.learning_language)?'selected':''">
-            <span class="language-label">{{ language.shortcut }} - {{ language.name }}</span>
-            <label for="lng{{ language.language_id }}"></label>
-            <input type="radio" name="learningLanguage" id="lng{{ language.language_id }}" ng-checked="(language.language_id == settings.learning_language)" ng-click="setLearningLanguage(language.language_id)">
+    	<div class="item language-item" ng-repeat="language in languages" ng-if="language.language_id != settings.default_language"  ng-class="(language.language_id == settings.learning_language)?'selected':''" ng-click="setLearningLanguage(language.language_id)" ng-checked="(language.language_id == settings.learning_language)">
+            {{ language.shortcut }} - {{ language.name }}
     	</div>
     </div>
   </ion-content>

@@ -1,0 +1,30 @@
+<ion-view view-title="New language">
+	<ion-content>
+		<form ng-show="!languageAdded">
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Language
+					<span class="form-error" ng-show="formError.name">{{ formError.name }}</span>
+				</span>
+				<input type="text" ng-model="newLang.name" placeholder="english">
+			</label>
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Shortcut
+					<span class="form-error" ng-show="formError.shortcut">{{ formError.shortcut }}</span>
+				</span>
+				<input type="text" ng-model="newLang.shortcut" placeholder="en">
+			</label>
+			<button class="button button-balanced button-block" ng-click="addLanguage(newLang)">
+  			add language
+			</button>
+		</form>
+		<div ng-show="languageAdded">
+			Language has been added:<br/>
+			{{ newLang.shortcut }} - {{ newLang.name }}<br/>
+			<a class="button button-outline button-balanced icon icon-chevron-left" href="#/tab/settings">Back</a>
+		</div>
+		<div class="form-error" ng-show="languageAddError">
+			Language could not be added:<br/>
+			{{ languageAddError }}<br/>
+		</div>
+	</ion-content>
+</ion-view>

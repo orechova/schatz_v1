@@ -9,6 +9,8 @@ Error: File to import not found or unreadable: www/lib/ionic/scss/ionic.
 20: 
 21: // Include all of Ionic
 22: @import "www/lib/ionic/scss/ionic";
+23: 
+24: $button-small-font-size: 25px;
 
 Backtrace:
 /home/orechova/Documents/Schatz_A/Schatz/scss/ionic.app.scss:22
@@ -49,4 +51,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: www/lib/ionic/scss/ionic.\A        Load path: /home/orechova/Documents/Schatz_A/Schatz/scss\A         on line 22 of /home/orechova/Documents/Schatz_A/Schatz/scss/ionic.app.scss\A \A 17: \A 18: // The path for our ionicons font files, relative to the built CSS in www/css\A 19: $ionicons-font-path: \"../lib/ionic/fonts\" !default;\A 20: \A 21: // Include all of Ionic\A 22: @import \"www/lib/ionic/scss/ionic\";"; }
+  content: "Error: File to import not found or unreadable: www/lib/ionic/scss/ionic.\A        Load path: /home/orechova/Documents/Schatz_A/Schatz/scss\A         on line 22 of /home/orechova/Documents/Schatz_A/Schatz/scss/ionic.app.scss\A \A 17: \A 18: // The path for our ionicons font files, relative to the built CSS in www/css\A 19: $ionicons-font-path: \"../lib/ionic/fonts\" !default;\A 20: \A 21: // Include all of Ionic\A 22: @import \"www/lib/ionic/scss/ionic\";\A 23: \A 24: $button-small-font-size: 25px;"; }

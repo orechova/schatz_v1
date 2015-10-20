@@ -20,8 +20,8 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
     $cordovaSQLite.execute(db, 
       "CREATE TABLE IF NOT EXISTS languages(" +
       "language_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-      "shortcut VARCHAR NOT NULL," +
-      "name VARCHAR NOT NULL" +
+      "shortcut VARCHAR NOT NULL UNIQUE," +
+      "name VARCHAR NOT NULL UNIQUE" +
       ")"
     );
 
@@ -30,7 +30,7 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
       "CREATE TABLE IF NOT EXISTS settings(" +
       "user_id INTEGER PRIMARY KEY AUTOINCREMENT," +
       "default_language INTEGER NOT NULL," +
-      "learning_language INTEGER NOT NULL" +
+      "learning_language INTEGER NOT NULL " +
       ")"
     );
 
@@ -39,12 +39,12 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
       "CREATE TABLE IF NOT EXISTS expressions(" +
       "expression_id INTEGER PRIMARY KEY AUTOINCREMENT," +
       "created DATETIME DEFAULT CURRENT_TIMESTAMP," +
-      "last_test_time DATETIME DEFAULT CURRENT_TIMESTAMP," +
+      "last_test_time DATETIME DEFAULT CURRENT_TIMESTAMP INDEX," +
       "last_test_success INTEGER DEFAULT 0," +
-      "languageD INTEGER NOT NULL," +
-      "textD TEXT NOT NULL," +
-      "languageL INTEGER NOT NULL," +
-      "textL TEXT NOT NULL" +
+      "languageF INTEGER NOT NULL," +
+      "textF TEXT NOT NULL," +
+      "languageT INTEGER NOT NULL," +
+      "textT TEXT NOT NULL " +
       ")"
     );
     // THIS WILL START EMPTY
@@ -69,6 +69,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         'home-tab': {
           templateUrl: "templates/home.html",
           controller: 'HomeTabCtrl'
+        }
+      }
+    })
+    .state('tabs.new-language', {
+      url: "/new-language",
+      views: {
+        'settings-tab': {
+          templateUrl: "templates/newLanguage.html",
+          controller: 'NewLangCtrl'
         }
       }
     })

@@ -13,9 +13,10 @@ SETTINGS:
 VOCABULARY:
 - nacitanie iba casti slovicok (pre vacsie sety) .. load podla scrollu
 - prehodit poradie stlpcov
-- search
+- search, filtre
 - prehadzovanie searchu
 - pridat slovo odtialto (spat ukazuje na zoznam)
 
 NEW WORD:
 - check ci kombinacia vyraz + preklad uz neexistuje
++ po skonceni ponuknut moznost pokracovat

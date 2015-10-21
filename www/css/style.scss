@@ -1,0 +1,40 @@
+.home-buttons{
+  padding-top: 15%;
+}
+.info-content{
+  padding: 10%;
+}
+.align-right{
+	position: relative;
+	right: 0px;
+}
+.selected{
+	font-weight: bold;
+}
+
+.language-item{
+	padding-right: 1em;
+	background-origin: content-box;
+	background-image: url('../img/checkbox_green.png');
+	background-position: right center;
+	background-repeat: no-repeat;
+}
+.language-item.selected{
+	background-image: url('../img/checkbox_green_checked.png');
+}
+
+.button-divider{
+	position: absolute;
+  right: 1em;
+}
+
+.form-error{
+	font-size: small;
+	font-style: italic;
+	color: red;
+}
+.form-error::before{
+	content: '!';
+}
+
+

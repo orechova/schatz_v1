@@ -1,12 +1,19 @@
-app.controller('HomeTabCtrl', function(){
-	
-});
+(function(){
 
-app.controller('SettingsTabCtrl', ['$scope','languages', function($scope, $languages){
-	$scope.languages = $languages.all();
-}]);
+  app.controller('SettingsTabCtrlDemo', ['$scope', function($scope){
 
-app.controller('InfoTabCtrl', function(){
+    $scope.languages = [
+      { 'language_id': 1, 'name': 'slovencina', 'shortcut': 'sk' },
+      { 'language_id': 2, 'name': 'italiano', 'shortcut': 'it' },
+      { 'language_id': 3, 'name': 'deutsch', 'shortcut': 'de' },
+    ];
 
-});
+    $scope.settings = { 'learning_language': 2, 'default_language': 1 };
 
+    $scope.setLearningLanguage = function(language_id){
+      $scope.settings.learning_language = language_id;
+    }
+
+  }]);
+
+})();

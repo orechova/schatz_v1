@@ -24,7 +24,7 @@
 
     self.setLearningLanguage = function(language_id){
       var parameters = [language_id];
-      return SchatzDB.query("UPDATE languages SET learning_language=? WHERE user_id=1", parameters);
+      return SchatzDB.query("UPDATE settings SET learning_language=? WHERE user_id=1", parameters);
     }
 
     self.addNew = function(newLang) {

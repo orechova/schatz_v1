@@ -1,7 +1,8 @@
 VSEOBECNE:
-- rozdelit subory
 - load expressions, languages and settings - pri inicializacii aplikacie (globalny controller alebo tak)
+- vyuzit mobilne eventy (swipe apod.)
 - presunut pomocne funkcie z controllerov do services?
++ rozdelit subory
 
 SETTINGS:
 - dizajn '+' buttonu
@@ -12,9 +13,10 @@ SETTINGS:
 
 VOCABULARY:
 - nacitanie iba casti slovicok (pre vacsie sety) .. load podla scrollu
-- prehodit poradie stlpcov
-- search, filtre
-- prehadzovanie searchu
+- zoradovanie slovicok
++ prehodit poradie stlpcov
++ search, filtre
++ prehadzovanie searchu
 - pridat slovo odtialto (spat ukazuje na zoznam)
 
 NEW WORD:

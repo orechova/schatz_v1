@@ -14,7 +14,7 @@
 				<span class="col col-50">{{ (defaultFirst) ? settings.learning_language_prop.name : settings.default_language_prop.name }}</span>
 				<button class="button button-balanced button-divider button-clear icon ion-arrow-swap" ng-click="switchLanguages()"></button>
 			</article>
-			<article class="item row" ng-repeat="expression in expressions | filter: search">
+			<article class="item row" ng-repeat="expression in expressions | filter: search | orderBy: textF">
 				<span class="col col-50">{{ (defaultFirst) ? expression.textF : expression.textT }}</span>
 				<span class="col col-50">{{ (defaultFirst) ? expression.textT : expression.textF }}</span>
 			</article>

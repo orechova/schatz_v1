@@ -1,0 +1,21 @@
+<ion-view view-title="Test {{ settings.learning_language_shortcut }}">
+	<ion-content>
+		<article class="test-word">
+			({{ settings.default_language_shortcut }}) {{ testWord.textF }} 
+		</article>
+		<button class="button button-balanced button-block" ng-click="showResult = true" ng-show="!showResult">
+			translate to {{ settings.learning_language_shortcut }}
+		</button>
+		<section ng-show="showResult">
+			<article class="test-word-translation">
+				({{ settings.learning_language_shortcut }}) {{ testWord.textT }} 
+			</article>
+			<div class="test-result-header">I was:</div>
+			<div class="button-bar">
+				<button class="button button-balanced" ng-click="testResult(testWord, 1)">Right</button>
+				<button class="button button-balanced" ng-click="testResult(testWord, 0)">Close</button>
+				<button class="button button-balanced" ng-click="testResult(testWord, -1)">Wrong</button>
+			</div>
+		</section>
+	</ion-content>
+</ion-view>

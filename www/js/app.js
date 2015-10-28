@@ -41,6 +41,7 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
       "created DATETIME DEFAULT CURRENT_TIMESTAMP," +
       "last_test_time DATETIME DEFAULT CURRENT_TIMESTAMP," +
       "last_test_success INTEGER DEFAULT 0," +
+      "tests_passed INTERGER DEFAULT 0," +
       "languageF INTEGER NOT NULL," +
       "textF TEXT NOT NULL," +
       "languageT INTEGER NOT NULL," +
@@ -114,6 +115,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         'home-tab': {
           templateUrl: "templates/newWord.html",
           controller: 'NewWordCtrl'
+        }
+      }
+    })
+    .state('tabs.test', {
+      url: "/test",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/test.html",
+          controller: 'TestCtrl'
         }
       }
     })

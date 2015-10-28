@@ -15,14 +15,18 @@ VOCABULARY:
 - nacitanie iba casti slovicok (pre vacsie sety) .. load podla scrollu
 - pridat slovo odtialto (spat ukazuje na zoznam)
 - zoradovanie slovicok
+- edit slovicka
+- zmazanie slovicka
 + prehodit poradie stlpcov
 + search, filtre
 + prehadzovanie searchu
 
 TEST:
-- test random slovicko, vysledky: [right, not exactly, false]
-- zapamatanie vysledkov testu (level 0, -1, +1), time, success
-- slovicko podla level + time + success
+- pri prazdnej testovacej mnozine vypisat hlasenie
+- nevyberat slovicka, testovane za poslednych N minut (5?)
++ test random slovicko, vysledky: [right, not exactly, false]
++ zapamatanie vysledkov testu (level 0, -1, +1), time, success
++ slovicko podla level + time + success
 
 NEW WORD:
 - check ci kombinacia vyraz + preklad uz neexistuje

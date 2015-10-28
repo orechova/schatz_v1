@@ -6,15 +6,6 @@
     $scope.testWord = null;
     $scope.showResult = false;
 
-    loadNextTest = function(){
-      var index = nonUniformRandom($scope.testExpressions.length);
-      console.log('****** EXPRESIONS ******');
-      console.log(JSON.stringify($scope.testExpressions));
-      console.log('****** INDEX: '+index+' ******');
-      $scope.testWord = $scope.testExpressions[index];
-      $scope.showResult = false;
-    }
-
     $scope.testResult = function(testWord, result){
       var now = new Date();
       Expressions.setTestResult(testWord.expression_id, result, now).then(function(){
@@ -23,6 +14,19 @@
           loadNextTest();
         });
       });
+    }
+
+    $scope.translate = function(){
+      $scope.showResult = true;
+    }
+
+    var loadNextTest = function(){
+      var index = nonUniformRandom($scope.testExpressions.length);
+      console.log('****** EXPRESIONS ******');
+      console.log(JSON.stringify($scope.testExpressions));
+      console.log('****** INDEX: '+index+' ******');
+      $scope.testWord = $scope.testExpressions[index];
+      $scope.showResult = false;
     }
 
     var findLanguageShortcut = function(findID){

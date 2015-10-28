@@ -3,7 +3,7 @@
 		<article class="test-word">
 			({{ settings.default_language_shortcut }}) {{ testWord.textF }} 
 		</article>
-		<button class="button button-balanced button-block" ng-click="showResult = true" ng-show="!showResult">
+		<button class="button button-balanced button-block" ng-click="translate()" ng-show="!showResult">
 			translate to {{ settings.learning_language_shortcut }}
 		</button>
 		<section ng-show="showResult">

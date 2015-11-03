@@ -2,13 +2,13 @@
 	<ion-content>
 		<form ng-show="!wordAdded">
 			<label class="item item-input item-stacked-label">
-				<span class="input-label">{{ settings.default_language_shortcut }}
+				<span class="input-label">{{ settings.default_shortcut }}
 					<span class="form-error" ng-show="formError.textF">{{ formError.textF }}</span>
 				</span>
 				<input type="text" ng-model="newWord.textF" placeholder="expression">
 			</label>
 			<label class="item item-input item-stacked-label">
-				<span class="input-label">{{ settings.learning_language_shortcut }}
+				<span class="input-label">{{ settings.learning_shortcut }}
 					<span class="form-error" ng-show="formError.textT">{{ formError.textT }}</span>
 				</span>
 				<input type="text" ng-model="newWord.textT" placeholder="translation">
@@ -19,7 +19,7 @@
 		</form>
 		<div ng-show="wordAdded">
 			New expression has been added:<br/>
-			({{ settings.default_language_shortcut }}){{ newWord.textF }} - ({{ settings.learning_language_shortcut }}){{ newWord.textT }}<br/>
+			({{ settings.default_shortcut }}){{ newWord.textF }} - ({{ settings.learning_shortcut }}){{ newWord.textT }}<br/>
 			<a class="button button-outline button-balanced icon icon-chevron-left" href="javascript:history.back()">Back</a>
 			<a class="button button-outline button-balanced icon icon-chevron-left" ng-click="clearForm()">Add another</a>
 		</div>

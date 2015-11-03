@@ -16,7 +16,12 @@
     }
 
     self.getSettings = function(){
-      return SchatzDB.query("SELECT * FROM settings WHERE user_id=1")
+      return SchatzDB.query("SELECT settings.*, def.shortcut AS default_shortcut, def.name AS default_name, " + 
+                            "learn.shortcut AS learning_shortcut, learn.name AS learning_name " +
+                            "FROM settings " + 
+                            "JOIN languages AS def ON settings.default_language=def.language_id " +
+                            "JOIN languages AS learn ON settings.learning_language=learn.language_id " +
+                            "WHERE settings.user_id=1")
         .then(function(result){
           return SchatzDB.getAll(result);
         });

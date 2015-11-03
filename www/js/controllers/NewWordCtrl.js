@@ -7,23 +7,11 @@
     $scope.wordAddError = null;
     $scope.newWord = {};
 
-    var findLanguageShortcut = function(findID){
-      var item = null;
-      for (var i=0; i<$rootScope.languages.length; i++){
-        item = $rootScope.languages[i];
-        if (item.language_id == findID)
-          return item.shortcut;
-      };
-      return 'not found';
-    }
-
     Languages.getLanguages().then(function(lngs){
       $rootScope.languages = lngs;
       Languages.getSettings().then(function(set){
         $rootScope.settings = set[0];
-        $rootScope.settings.default_language_shortcut = findLanguageShortcut($rootScope.settings.default_language);
-        $rootScope.settings.learning_language_shortcut = findLanguageShortcut($rootScope.settings.learning_language);
-      });
+        });
     });
 
     $scope.addWord = function(newWord){

@@ -6,22 +6,10 @@
     $scope.showSearch = false;
     $scope.defaultFirst = true;
 
-    var findLanguageProperties = function(findID){
-      var item = null;
-      for (var i=0; i<$rootScope.languages.length; i++){
-        item = $rootScope.languages[i];
-        if (item.language_id == findID)
-          return item;
-      };
-      return 'not found';
-    }
-
     Languages.getLanguages().then(function(lngs){
       $rootScope.languages = lngs;
       Languages.getSettings().then(function(set){
         $rootScope.settings = set[0];
-        $rootScope.settings.default_language_prop = findLanguageProperties($rootScope.settings.default_language);
-        $rootScope.settings.learning_language_prop = findLanguageProperties($rootScope.settings.learning_language);
         Expressions.getExpressions($rootScope.settings.default_language, $rootScope.settings.learning_language).then(function(exps){
           $rootScope.expressions = exps;
         });

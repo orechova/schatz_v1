@@ -9,11 +9,11 @@
 			<article class="item item-divider row" ng-show="showSearch">
 				<input type="text" ng-model="search.textF" ng-show="defaultFirst">
 				<input type="text" ng-model="search.textT" ng-show="!defaultFirst">	
-				({{ (defaultFirst) ? settings.default_language_prop.shortcut : settings.learning_language_prop.shortcut }})
+				({{ (defaultFirst) ? settings.default_shortcut : settings.learning_shortcut }})
 			</article>
 			<article class="item item-divider row">
-				<span class="col col-50">{{ (defaultFirst) ? settings.default_language_prop.name : settings.learning_language_prop.name }}</span>
-				<span class="col col-50">{{ (defaultFirst) ? settings.learning_language_prop.name : settings.default_language_prop.name }}</span>
+				<span class="col col-50">{{ (defaultFirst) ? settings.default_name : settings.learning_name }}</span>
+				<span class="col col-50">{{ (defaultFirst) ? settings.learning_name : settings.default_name }}</span>
 				<button class="button button-balanced button-divider button-clear icon ion-arrow-swap" ng-click="switchLanguages()"></button>
 			</article>
 			<article class="item row" ng-repeat="expression in expressions | filter: search | orderBy: textF">

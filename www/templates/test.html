@@ -1,14 +1,14 @@
 <ion-view view-title="Test {{ settings.learning_language_shortcut }}">
 	<ion-content>
 		<article class="test-word">
-			({{ settings.default_language_shortcut }}) {{ testWord.textF }} 
+			({{ settings.default_shortcut }}) {{ testWord.textF }} 
 		</article>
 		<button class="button button-balanced button-block" ng-click="translate()" ng-show="!showResult">
-			translate to {{ settings.learning_language_shortcut }}
+			translate to {{ settings.learning_shortcut }}
 		</button>
 		<section ng-show="showResult">
 			<article class="test-word-translation">
-				({{ settings.learning_language_shortcut }}) {{ testWord.textT }} 
+				({{ settings.learning_shortcut }}) {{ testWord.textT }} 
 			</article>
 			<div class="test-result-header">I was:</div>
 			<div class="button-bar">

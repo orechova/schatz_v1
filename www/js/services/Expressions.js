@@ -23,7 +23,7 @@
       var timeLimit = Math.floor(new Date().valueOf() / 1000) - 5*60;
       var parameters = [languageF, languageT, timeLimit];
       return SchatzDB.query("SELECT * FROM expressions " + 
-                            "WHERE languageF=? AND languageT=? AND last_test_time<DATETIME(?) " +
+                            "WHERE languageF=? AND languageT=? AND last_test_time<DATETIME(?,'unixepoch') " +
                             "ORDER BY tests_passed, last_test_success, last_test_time, created", parameters)
         .then(function(result){
           return SchatzDB.getAll(result);
@@ -36,19 +36,19 @@
         case 1:
           var parameters = [1, timestamp, expID];
           return SchatzDB.query("UPDATE expressions " +
-                                "SET last_test_success=?, last_test_time=DATETIME(?), tests_passed=tests_passed+1 " +
+                                "SET last_test_success=?, last_test_time=DATETIME(?,'unixepoch'), tests_passed=tests_passed+1 " +
                                 "WHERE expression_id=?", parameters);
         break;
         case 0:
           var parameters = [0, timestamp, expID];
           return SchatzDB.query("UPDATE expressions " +
-                                "SET last_test_success=?, last_test_time=DATETIME(?) " +
+                                "SET last_test_success=?, last_test_time=DATETIME(?,'unixepoch') " +
                                 "WHERE expression_id=?", parameters);
         break;
         case -1:
           var parameters = [0, timestamp, expID];
           return SchatzDB.query("UPDATE expressions " +
-                                "SET last_test_success=?, last_test_time=DATETIME(?), tests_passed=0 " +
+                                "SET last_test_success=?, last_test_time=DATETIME(?,'unixepoch'), tests_passed=0 " +
                                 "WHERE expression_id=?", parameters);
         break;
         default: 

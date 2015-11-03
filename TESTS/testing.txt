@@ -1,5 +1,12 @@
+***** DEVICE *****
+
 adb -d shell 'run-as com.yourpackage cat /data/data/com.yourpackage/databases/dbname.sqlite > /sdcard/dbname.sqlite'
 
 "adb logcat CordovaLog:D \*:S"
 
 adb -s <deviceid> logcat CordovaLog:D *:S
+
+
+***** SQL *****
+
+http://sqlfiddle.com/#!5/69c78

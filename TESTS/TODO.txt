@@ -1,7 +1,7 @@
 VSEOBECNE:
 - load expressions, languages and settings - pri inicializacii aplikacie (globalny controller alebo tak)
 - vyuzit mobilne eventy (swipe apod.)
-- presunut pomocne funkcie z controllerov do services?
++ presunut pomocne funkcie z controllerov do services?
 + rozdelit subory
 
 SETTINGS:
@@ -13,10 +13,11 @@ SETTINGS:
 
 VOCABULARY:
 - nacitanie iba casti slovicok (pre vacsie sety) .. load podla scrollu
-- pridat slovo odtialto (spat ukazuje na zoznam)
 - zoradovanie slovicok
 - edit slovicka
 - zmazanie slovicka
++ opravit bug: po navrate sa nezobrazuje header tabulky --> zjednotit settings
++ pridat slovo odtialto (spat ukazuje na zoznam)
 + prehodit poradie stlpcov
 + search, filtre
 + prehadzovanie searchu

@@ -20,7 +20,7 @@
 		<div ng-show="wordAdded">
 			New expression has been added:<br/>
 			({{ settings.default_language_shortcut }}){{ newWord.textF }} - ({{ settings.learning_language_shortcut }}){{ newWord.textT }}<br/>
-			<a class="button button-outline button-balanced icon icon-chevron-left" href="#/tab/home">Back</a>
+			<a class="button button-outline button-balanced icon icon-chevron-left" href="javascript:history.back()">Back</a>
 			<a class="button button-outline button-balanced icon icon-chevron-left" ng-click="clearForm()">Add another</a>
 		</div>
 		<div class="form-error" ng-show="wordAddError">

@@ -1,8 +1,10 @@
 <ion-view view-title="Vocabulary">
-	<ion-nav-buttons>
-		<button class="button button-clear icon ion-search" side="right" ng-click="toggleSearch()"></button>
+	<ion-nav-buttons side="right" >
+		<button class="button button-clear icon ion-search" ng-click="toggleSearch()"></button>
+		<a class="button button-clear icon ion-plus-round" href="#/tab/new-word"></a>
 	</ion-nav-buttons>
 	<ion-content>
+		<br>
 		<div class="list">
 			<article class="item item-divider row" ng-show="showSearch">
 				<input type="text" ng-model="search.textF" ng-show="defaultFirst">
